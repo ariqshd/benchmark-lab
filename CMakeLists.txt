@@ -11,6 +11,4 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Add our subdirectories
 add_subdirectory(bl_core)
 add_subdirectory(bl_app)
-
-# We will add this in the next lesson
-# add_subdirectory(benchmarks)
+add_subdirectory(benchmarks)
