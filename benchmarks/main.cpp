@@ -91,6 +91,9 @@ static void BM_ListInsertFront(benchmark::State& state) {
 BENCHMARK(BM_ListInsertFront);
 
 static void BM_VectorTraverse(benchmark::State& state) {
+     int64_t n = state.range(0);
+     state.SetComplexityN(n);
+
   // Setup: Create a large vector
   std::vector<int> v(ITEM_COUNT);
   std::fill(v.begin(), v.end(), 1);
@@ -105,12 +108,19 @@ static void BM_VectorTraverse(benchmark::State& state) {
 
     benchmark::DoNotOptimize(sum);
   }
+
+    state.SetItemsProcessed(state.iterations() * n); // show items per second
 }
-BENCHMARK(BM_VectorTraverse);
+BENCHMARK(BM_VectorTraverse)
+  ->Range(8, 8 << 24)
+  ->Complexity();
 
 static void BM_ListTraverse(benchmark::State& state) {
-  // Setup: Create a large list
-  std::forward_list<int> l(ITEM_COUNT);
+    int64_t n = state.range(0);
+    state.SetComplexityN(n);
+
+    // Setup: Create a large list
+  std::forward_list<int> l(n);
   std::fill(l.begin(), l.end(), 1);
 
   for (auto _ : state) {
@@ -123,8 +133,12 @@ static void BM_ListTraverse(benchmark::State& state) {
 
     benchmark::DoNotOptimize(sum);
   }
+
+  state.SetItemsProcessed(state.iterations() * n); // show items per second
 }
-BENCHMARK(BM_ListTraverse);
+BENCHMARK(BM_ListTraverse)
+    ->Range(8, 8 << 24)
+    ->Complexity();
 
 
 
