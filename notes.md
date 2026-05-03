@@ -80,3 +80,12 @@ BM_ListTraverse_RMS                  1 %
 The BM_ListTraverse_BigO value of 13.42N13.42N shows the library detected linear complexity, or O(n)O(n), as expected. The time to traverse our list scales linearly with the length of the list. 13.513.5 represents the scaling factor - each new item in our list increases the scan time by around 13.513.5 nanoseconds on this machine.
 
 The RMS (root mean square) value is the error rate. We have a very low RMS at 1%, meaning the benchmark is very confident in this answer. A high RMS (e.g., 40%) means the data is erratic, and the big O classification might be wrong.
+
+
+## Amortized Cost
+
+Amortization is the process of spreading a high upfront cost over the lifetime of the operations that follow.
+
+Just as a business might pay a high upfront cost for a machine to make individual products cheaper to produce, we pay a high CPU cost to sort a vector so that every subsequent search becomes cheaper.
+
+An amortized benchmark measures the total time of the entire lifecycle to find the 'break-even' point where that initial investment pays off.
